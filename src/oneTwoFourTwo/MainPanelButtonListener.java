@@ -14,7 +14,7 @@ public class MainPanelButtonListener implements ActionListener {
 		
 		if(actionCommand.equals("New Class"))
 		{
-			//this.diagramPanel.addClass();
+			this.diagramPanel.addClass();
 		}
 		else
 		{
