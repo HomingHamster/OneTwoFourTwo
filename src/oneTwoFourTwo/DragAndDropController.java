@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.event.MouseInputAdapter;
 
 public class DragAndDropController extends MouseInputAdapter{
-    Vector<DragAndDropClassObject> component = new Vector<DragAndDropClassObject>();
+    Vector<DragAndDropClassObject> components = new Vector<DragAndDropClassObject>();
     Point offset = new Point();
     boolean dragging = false;
     DiagramPanel diagramPanel;
@@ -45,15 +45,14 @@ public class DragAndDropController extends MouseInputAdapter{
      */
     public void mouseClicked(MouseEvent e){
     	Point p = e.getPoint();
-    	for(int i=0; i<component.size() ; i++){
-        	Rectangle r = component.get(i).rect;
+    	for(int i=0; i<components.size() ; i++){
+        	Rectangle r = components.get(i).rect;
 	        if(r.contains(p)) {
 	        	//blank icon because i can't figure out how to not have one
 	        	ImageIcon icon = new ImageIcon("");
 	        	//set options for the dialog
 	        	Object[] possibilities = {"rename", "delete", "add link"};
 	        	//present dialog and save answer to s
-	        	@SuppressWarnings("unused")
 				String s = (String)JOptionPane.showInputDialog(diagramPanel, 
 	        			"What would you like to do to the class?", 
 	        			"Modify class..", 
@@ -61,7 +60,19 @@ public class DragAndDropController extends MouseInputAdapter{
 	        			icon, 
 	        			possibilities, 
 	        			"delete");
-	        	//TODO: use s!
+				//Asses the value returned and call necessarry function
+	        	if (s=="delete"){
+	        		removeClass(components.get(i).name);
+	        		return;
+	        	} else if (s=="rename"){
+	        		renameClass(components.get(i).name);
+	        		return;
+	        	} else if (s=="add link"){
+	        		return;
+	        	} else {
+	        		System.out.println("uh oh!");
+	        		return;
+	        	}
 	        }
         }
     }
@@ -73,8 +84,8 @@ public class DragAndDropController extends MouseInputAdapter{
     public void mousePressed(MouseEvent e) {
         Point p = e.getPoint();
         
-        for(int i=0; i<component.size() ; i++){
-        	Rectangle r = component.get(i).rect;
+        for(int i=0; i<components.size() ; i++){
+        	Rectangle r = components.get(i).rect;
 	        if(r.contains(p)) {
 	            offset.x = p.x - r.x;
 	            offset.y = p.y - r.y;
@@ -92,15 +103,15 @@ public class DragAndDropController extends MouseInputAdapter{
 		double minDist = Double.MAX_VALUE;
 		int minDistIndex = -1;
 
-		for(int i=0; i < component.size(); i++) {
-			c = (DragAndDropClassObject)(component.get(i));
+		for(int i=0; i < components.size(); i++) {
+			c = (DragAndDropClassObject)(components.get(i));
 			if(c.distanceTo(x,y) < minDist) {
 				minDist = c.distanceTo(x,y);
 				minDistIndex = i;
 			}
 		}
 		if((minDistIndex >= 0) && (minDist < 100)) {
-			return component.get(minDistIndex);
+			return components.get(minDistIndex);
 		}
 	    return null;
 	}
@@ -114,7 +125,34 @@ public class DragAndDropController extends MouseInputAdapter{
 		newComponent.addMouseListener(this);
         newComponent.addMouseMotionListener(this);
         
-        component.add(newComponent);
+        components.add(newComponent);
+	}
+	
+	/*
+	 * run through classes, if any found with the name specified, then
+	 * remove the class from components.
+	 */
+	public void removeClass(String name){
+		DragAndDropClassObject obj;
+		for (int i=0;i<components.size();i++){
+			obj = components.get(i);
+			if (obj.name == name){
+				components.remove(i);
+				diagramPanel.repaint();
+				return;
+			}
+		}
+	}
+	
+	public void renameClass(String oldName){
+		for (int i=0;i<components.size();i++){
+			if (components.get(i).name == oldName){
+				components.get(i).name = 
+					JOptionPane.showInputDialog("Enter Class Name:");;
+				diagramPanel.repaint();
+				return;
+			}
+		}
 	}
  
 	/*
@@ -149,8 +187,8 @@ public class DragAndDropController extends MouseInputAdapter{
 	public void drawAll(Graphics g) {
 		DragAndDropClassObject currentClass;
 
-		for(int i=0; i < component.size(); i++) {
-			currentClass = (DragAndDropClassObject)(component.get(i));
+		for(int i=0; i < components.size(); i++) {
+			currentClass = (DragAndDropClassObject)(components.get(i));
 			currentClass.paintComponent(g);
 		}
 	}

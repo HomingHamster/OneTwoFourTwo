@@ -54,16 +54,19 @@ public class DiagramPanel extends JPanel{
 	 */
 	public void addClass() {
 		String name = JOptionPane.showInputDialog("Enter Class Name:");
+		//TODO: check name doesn't exist.
 		String description = JOptionPane.showInputDialog("Enter Class description:");
 		controller.addClass(name, description);
 		this.repaint();
 	}
 	
 	/*
-	 * TODO: Make and descibe this function.
+	 * Request name and pass name to the controller for clean removal.
+	 * TODO: not working..
 	 */
 	public void removeClass() {
-		
+		String name = JOptionPane.showInputDialog("Enter Class Name:");
+		controller.removeClass(name);
 	}
 	
 	/*
