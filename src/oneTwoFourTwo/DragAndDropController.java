@@ -13,6 +13,8 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.Vector;
 
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.event.MouseInputAdapter;
 
 public class DragAndDropController extends MouseInputAdapter{
@@ -36,6 +38,33 @@ public class DragAndDropController extends MouseInputAdapter{
 //        component.add(newComponent);
 //        this.diagramPanel = diagramPanel;
 //    }
+    
+    /*
+     * If mouse is clicked then show an option dialog to ask what
+     * the user was *hoping* to do with that class.
+     */
+    public void mouseClicked(MouseEvent e){
+    	Point p = e.getPoint();
+    	for(int i=0; i<component.size() ; i++){
+        	Rectangle r = component.get(i).rect;
+	        if(r.contains(p)) {
+	        	//blank icon because i can't figure out how to not have one
+	        	ImageIcon icon = new ImageIcon("");
+	        	//set options for the dialog
+	        	Object[] possibilities = {"rename", "delete", "add link"};
+	        	//present dialog and save answer to s
+	        	@SuppressWarnings("unused")
+				String s = (String)JOptionPane.showInputDialog(diagramPanel, 
+	        			"What would you like to do to the class?", 
+	        			"Modify class..", 
+	        			JOptionPane.PLAIN_MESSAGE, 
+	        			icon, 
+	        			possibilities, 
+	        			"delete");
+	        	//TODO: use s!
+	        }
+        }
+    }
  
     /*
      * When the mouse is clicked, figure out if it is clicked inside a
