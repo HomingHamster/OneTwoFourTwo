@@ -1,3 +1,11 @@
+/**
+ * Based on classes Written by
+ * @author Amy James (arj18)
+ * Modified by Felix Farquharson (fef)
+ * This class defines the functionality of the buttons on the 
+ * DesignFrameMenu.
+ */
+
 package oneTwoFourTwo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

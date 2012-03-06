@@ -1,3 +1,10 @@
+/**
+ * Based on classes Written by
+ * @author Amy James (arj18)
+ * Modified by Felix Farquharson (fef)
+ * This class defines the menu for the DesignFrame.
+ */
+
 package oneTwoFourTwo;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -8,6 +15,9 @@ import javax.swing.JMenuItem;
 @SuppressWarnings("serial")
 
 public class DesignFrameMenu extends JMenuBar {
+	/*
+	 * Define the layout of the menu.
+	 */
 	private JMenu fileMenu = new JMenu("File");
 	private JMenu optionsMenu = new JMenu("Options");
 	
@@ -24,25 +34,28 @@ public class DesignFrameMenu extends JMenuBar {
 		this.add(optionsMenu);
 		setVisible(true);
 		
+		/*
+		 * Refence the custom listener for the menu buttons
+		 */
 		DesignFrameMenuListener menuListener = new DesignFrameMenuListener();
 		
         fileMenu.add(save);
-        save.addActionListener(menuListener);
+        save.addActionListener(menuListener); //Adds listener to button.
         
         fileMenu.add(open);
-        open.addActionListener(menuListener);
+        open.addActionListener(menuListener); //Adds listener to button.
         
         fileMenu.add(quit);
-        quit.addActionListener(menuListener);
+        quit.addActionListener(menuListener); //Adds listener to button.
         
         optionsMenu.add(newClass);
-        newClass.addActionListener(menuListener);
+        newClass.addActionListener(menuListener); //Adds listener to button.
         
         optionsMenu.add(addLink);
-        addLink.addActionListener(menuListener);
+        addLink.addActionListener(menuListener); //Adds listener to button.
         
         optionsMenu.add(removeClass);
-        removeClass.addActionListener(menuListener);
+        removeClass.addActionListener(menuListener); //Adds listener to button.
 	}
 
 }

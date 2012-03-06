@@ -1,3 +1,11 @@
+/**
+ * Based on classes Written by
+ * @author Amy James (arj18)
+ * Modified by Felix Farquharson (fef)
+ * This class listens for any button activity on the main panel.
+ */
+
+
 package oneTwoFourTwo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

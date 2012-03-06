@@ -1,3 +1,11 @@
+/**
+ * Based on classes Written by
+ * @author Amy James (arj18)
+ * Modified by Felix Farquharson (fef)
+ * This class is the main swing frame of the application, it
+ * sets the size, and title etc.
+ */
+
 package oneTwoFourTwo;
 import javax.swing.*;
 import oneTwoFourTwo.DesignFrameMenu;
@@ -11,14 +19,27 @@ public class DesignFrame extends JFrame {
 	private MainPanel mainPanel = new MainPanel(diagramPanel);
 	
 	public DesignFrame(){
+		/*
+		 * The following assigns a menubar defines in 
+		 * DesignFrameMenu to the frame.
+		 */
 		JMenuBar menuBar = new DesignFrameMenu();
 		setJMenuBar(menuBar);
 		
+		/*
+		 * This adds the panel containing the buttons and 
+		 * the design frame to the application.
+		 */
 		add(mainPanel);
 		
+		/*
+		 * Sets size and location on screen.
+		 */
 		setSize(800,600);
 		setLocation(100,100);
+		
 		setTitle("CS124 Group Project - BlueJish");
+		
 		setVisible(true);	
 	}
 }

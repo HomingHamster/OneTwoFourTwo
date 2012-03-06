@@ -1,3 +1,11 @@
+/**
+ * Based on classes Written by
+ * @author Amy James (arj18)
+ * Modified by Felix Farquharson (fef)
+ * This class acts as the mouse listener and also stores a list of all
+ * the classes on the diagram pannel.
+ */
+
 package oneTwoFourTwo;
 import java.awt.event.*;
 import java.awt.Graphics;
@@ -13,6 +21,10 @@ public class DragAndDropController extends MouseInputAdapter{
     boolean dragging = false;
     DiagramPanel diagramPanel;
     
+    /*
+     * on creation takes a note of the diagram pannel so it can be used
+     * later.
+     */
     public DragAndDropController(DiagramPanel dp){
     	this.diagramPanel = dp;
     }
@@ -25,6 +37,10 @@ public class DragAndDropController extends MouseInputAdapter{
 //        this.diagramPanel = diagramPanel;
 //    }
  
+    /*
+     * When the mouse is clicked, figure out if it is clicked inside a
+     * class rectangle, so that somthing can be done to the class.
+     */
     public void mousePressed(MouseEvent e) {
         Point p = e.getPoint();
         
@@ -38,6 +54,10 @@ public class DragAndDropController extends MouseInputAdapter{
         }
     }
     
+    /*
+     * Logic for finding the nearest class, from one of lynda's examples
+     * i think.
+     */
 	public DragAndDropClassObject findNearestClass(int x, int y){
 		DragAndDropClassObject c;
 		double minDist = Double.MAX_VALUE;
@@ -56,6 +76,9 @@ public class DragAndDropController extends MouseInputAdapter{
 	    return null;
 	}
 	
+	/*
+	 * add, store and watch any new classes passed from diagram pannel.
+	 */
 	public void addClass(String n, String desc){
 		DragAndDropClassObject newComponent = new DragAndDropClassObject(n, desc);
         
@@ -65,10 +88,21 @@ public class DragAndDropController extends MouseInputAdapter{
         component.add(newComponent);
 	}
  
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.event.MouseAdapter#mouseReleased(java.awt.event.MouseEvent)
+	 */
     public void mouseReleased(MouseEvent e) {
         dragging = false;
     }
  
+    /*
+     * (non-Javadoc)
+     * @see java.awt.event.MouseAdapter#mouseDragged(java.awt.event.MouseEvent)
+     * As you would expect, this is allows the rectangles to be dragged and adjusts 
+     * the location of the rectangles as they move. Finally calling repaint to make
+     * sure that the diagram pannel notices the change.
+     */
     public void mouseDragged(MouseEvent e) {
         if(dragging) {
             int x = e.getX() - offset.x;
@@ -79,6 +113,10 @@ public class DragAndDropController extends MouseInputAdapter{
         diagramPanel.repaint();
     }
     
+    /*
+     * run through each class drawing it to the diagram pannel with 
+     * its information.
+     */
 	public void drawAll(Graphics g) {
 		DragAndDropClassObject currentClass;
 
