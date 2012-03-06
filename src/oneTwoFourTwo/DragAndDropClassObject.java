@@ -14,6 +14,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.util.Vector;
 
 import javax.swing.JPanel;
 
@@ -22,6 +23,7 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 
 public class DragAndDropClassObject extends JPanel {
+	Vector<Link> links = new Vector<Link>();
 	ClassObject classObject;
 	Rectangle rect;
 	String name;

@@ -68,6 +68,7 @@ public class DragAndDropController extends MouseInputAdapter{
 	        		renameClass(components.get(i).name);
 	        		return;
 	        	} else if (s=="add link"){
+	        		addLink(components.get(i).name);
 	        		return;
 	        	} else {
 	        		System.out.println("uh oh!");
@@ -154,6 +155,21 @@ public class DragAndDropController extends MouseInputAdapter{
 			}
 		}
 	}
+	
+	public void addLink(String classOneName){
+		for (int i=0;i<components.size();i++){
+			if (components.get(i).name == classOneName){
+				String classTwoName = 
+					JOptionPane.showInputDialog("Enter Class Two Name:");
+				String oneToManyQuantifier = 
+					JOptionPane.showInputDialog("Enter a quantifier:");
+				components.get(i).links.add(new Link(classTwoName, 
+						oneToManyQuantifier));
+				diagramPanel.repaint();
+				return;
+			}
+		}
+	}
  
 	/*
 	 * (non-Javadoc)
@@ -190,6 +206,32 @@ public class DragAndDropController extends MouseInputAdapter{
 		for(int i=0; i < components.size(); i++) {
 			currentClass = (DragAndDropClassObject)(components.get(i));
 			currentClass.paintComponent(g);
+		}
+	}
+	
+	/*
+	 * Some funky jazz to draw the links, 
+	 * TODO: draw the arrow head.
+	 * TODO: draw the quantifier.
+     * TODO: change from one line into two squared parts.
+	 */
+	public void drawLinks(Graphics g){
+		Vector<Link> currentLinks;
+		String obj;
+
+		for(int i=0; i < components.size(); i++) {
+			currentLinks = (Vector<Link>)(components.get(i).links);
+			for(int j=0; j < currentLinks.size(); j++) {
+				Link currentLink = currentLinks.get(j);
+
+				for(int m=0; m < components.size(); m++) {
+					obj = components.get(m).name;
+					if (obj.equals(currentLink.classTwoName)){
+						currentLink.paintComponent(g, components.get(i), components.get(m));
+						break;
+					}
+				}
+			}
 		}
 	}
 }

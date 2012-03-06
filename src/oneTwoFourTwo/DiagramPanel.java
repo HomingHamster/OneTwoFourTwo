@@ -45,6 +45,7 @@ public class DiagramPanel extends JPanel{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		this.controller.drawAll(g);
+		this.controller.drawLinks(g);
 	}
 	
 	/*
