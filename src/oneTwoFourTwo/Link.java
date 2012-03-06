@@ -12,6 +12,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
+import java.awt.geom.Line2D;
 import java.util.Vector;
 
 public class Link {
@@ -105,8 +106,52 @@ public class Link {
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
 		g2.setPaint(Color.BLACK);
-		g2.drawLine(bestPointOne.x, bestPointOne.y,
-				bestPointTwo.x, bestPointTwo.y);
+		g2.draw(new Line2D.Double(new Point(bestPointOne.x, bestPointOne.y),
+				new Point(bestPointTwo.x, bestPointTwo.y)));
+		drawArrowHead(g2, bestPointTwo, bestPointOne, Color.black);
+		drawQuantifier(g2, bestPointTwo, bestPointOne, this.quantifier);
+		}
+	
+	/*
+	 * Code for drawing the arrow head was taken from the website
+	 * http://www.coderanch.com/t/340443/GUI/java/Draw-arrow-head-end-line.
+	 */
+	private void drawArrowHead(Graphics2D g2, Point tip, Point tail, Color color) {  
+		double phi;  
+	    int barb;
+        phi = Math.toRadians(40);  
+        barb = 20;
+        g2.setPaint(color);  
+        double dy = tip.y - tail.y;  
+        double dx = tip.x - tail.x;  
+        double theta = Math.atan2(dy, dx);
+        double x, y, rho = theta + phi;  
+        for(int j = 0; j < 2; j++)  
+        {  
+            x = tip.x - barb * Math.cos(rho);  
+            y = tip.y - barb * Math.sin(rho);  
+            g2.draw(new Line2D.Double(tip.x, tip.y, x, y));  
+            rho = theta - phi;  
+        }  
+    }
+	
+	/*
+	 * code below positions and draws the cardinality for the link.
+	 * It is based on the same code that draws the arrow hear and it
+	 * is far from perfect.
+	 */
+	private void drawQuantifier(Graphics2D g2, Point tip, Point tail, String quant){
+		double phi;  
+	    int barb;
+        phi = Math.toRadians(40);  
+        barb = 35; 
+        double dy = tip.y - tail.y;  
+        double dx = tip.x - tail.x;  
+        double theta = Math.atan2(dy, dx); 
+        double x, y, rho = theta + phi;
+        x = tip.x - barb * Math.cos(rho);  
+        y = tip.y - barb * Math.sin(rho); 
+        g2.drawString(quant, (int)x, (int)y);
 	}
 
 }
