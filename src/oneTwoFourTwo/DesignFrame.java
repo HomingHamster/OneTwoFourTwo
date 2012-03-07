@@ -7,6 +7,7 @@
  */
 
 package oneTwoFourTwo;
+
 import javax.swing.*;
 import oneTwoFourTwo.DesignFrameMenu;
 
@@ -19,6 +20,8 @@ public class DesignFrame extends JFrame {
 	private MainPanel mainPanel = new MainPanel(diagramPanel);
 	
 	public DesignFrame(){
+		
+		
 		/*
 		 * The following assigns a menubar defines in 
 		 * DesignFrameMenu to the frame.
@@ -39,7 +42,6 @@ public class DesignFrame extends JFrame {
 		setLocation(100,100);
 		
 		setTitle("CS124 Group Project - BlueJish");
-		
 		setVisible(true);	
 	}
 }

@@ -8,7 +8,9 @@
 
 
 package oneTwoFourTwo;
-import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -18,30 +20,53 @@ import javax.swing.JPanel;
 
 public class MainPanel extends JPanel {
 	JButton newClass, addLink;
+    GridBagLayout gridBag;
+    GridBagConstraints cons;
 	
 	public MainPanel(DiagramPanel diagramPanel){
 		MainPanelButtonListener buttonListener =
 				new MainPanelButtonListener(diagramPanel);
 		
-		this.setLayout(new BorderLayout());
+		gridBag = new GridBagLayout();
+		cons = new GridBagConstraints();
+		this.setLayout(gridBag);
+		gridBag.layoutContainer(this);
 		
 		/*
-		 * Make a button, add to the left and watch for it being clicked.
+		 * Make a button, add to grid (0,0) and watch for it being clicked.
 		 */
 		JButton newClassButton = new JButton("New Class");
-		this.add(newClassButton, BorderLayout.LINE_START);
+		cons.fill = GridBagConstraints.HORIZONTAL;
+		cons.anchor = GridBagConstraints.NORTHWEST;
+        cons.gridx = 0;
+        cons.gridy = 0;
+        cons.weightx = 1.0;
+        gridBag.setConstraints(newClassButton,cons);
+		this.add(newClassButton);
 		newClassButton.addActionListener(buttonListener);
 		
 		/*
-		 * Make a button, add on right.
+		 * Make a button, add to grid (0,1) and watch for it being clicked.
 		 */
 		JButton addLinkButton = new JButton("Add Link"); 
-		this.add(addLinkButton, BorderLayout.LINE_END);
+		cons.fill = GridBagConstraints.HORIZONTAL;
+        cons.gridx = 0;
+        cons.gridy = 1;
+        cons.weightx = 1.0;
+        gridBag.setConstraints(addLinkButton,cons);
+		this.add(addLinkButton);
 		addLinkButton.addActionListener(buttonListener);
 	
 		/*
 		 * Stick the diagram pannel in the middle of the two buttons.
 		 */
-		this.add(diagramPanel, BorderLayout.CENTER);
+		cons.fill = GridBagConstraints.BOTH;
+        cons.gridx = 1;
+        cons.gridy = 0;
+        cons.weightx = 6.0;
+        cons.weighty = 1.0;
+        cons.gridheight = 3;
+        gridBag.setConstraints(diagramPanel,cons);
+		this.add(diagramPanel);
 	}
 }
