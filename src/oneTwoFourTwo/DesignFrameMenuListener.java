@@ -11,8 +11,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class DesignFrameMenuListener implements ActionListener {
+	private DiagramPanel diagramPanel;
 	
-	public DesignFrameMenuListener(){
+	public DesignFrameMenuListener(DiagramPanel diagramPanel){
+		this.diagramPanel = diagramPanel;
 	}
 	
 	public void actionPerformed(ActionEvent actionEvent)
@@ -24,11 +26,15 @@ public class DesignFrameMenuListener implements ActionListener {
 		}
 		
 		else if (actionCommand.equals("New Class")){
-			//TODO: add class
+			this.diagramPanel.addClass();
 		}
 		
 		else if (actionCommand.equals("Add Link")){
-			//TODO: add link
+			this.diagramPanel.addLink();
+		}
+		
+		else if (actionCommand.equals("Generate Java Code")){
+			//TODO: generate
 		}
 		
 		else if (actionCommand.equals("Save")){

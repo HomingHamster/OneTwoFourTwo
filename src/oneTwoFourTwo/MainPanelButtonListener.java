@@ -20,12 +20,16 @@ public class MainPanelButtonListener implements ActionListener {
 	public void actionPerformed(ActionEvent actionEvent){
 		String actionCommand = actionEvent.getActionCommand();
 		
-		if(actionCommand.equals("New Class"))
-		{
+		if(actionCommand.equals("New Class")) {
+			//if new class button selected then pass to
+			//diagram panel to complete
 			this.diagramPanel.addClass();
-		}
-		else
-		{
+		} else if(actionCommand.equals("Add Link")){
+			//if new link is requested pass to diagram panel
+			//not controller because we don't know where the
+			//link is coming from.
+			this.diagramPanel.addLink();
+		} else {
 			System.out.println("Unexpected Command");
 		}
 	}

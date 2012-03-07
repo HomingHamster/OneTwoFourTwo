@@ -71,6 +71,16 @@ public class DiagramPanel extends JPanel{
 	}
 	
 	/*
+	 * Adds a link without knowing where it is coming from first, 
+	 * all we need to know is the name then the controller can take over.
+	 */	
+	public void addLink(){
+		String name = JOptionPane.showInputDialog("Enter Class One Name:");
+		controller.addLink(name);
+		this.repaint();
+	}
+	
+	/*
 	 * Shortcut to the d and d controller's find nearest class function
 	 * the work is done in the other class because that is where the 
 	 * information is stored.

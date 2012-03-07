@@ -28,8 +28,9 @@ public class DesignFrameMenu extends JMenuBar {
 	private JMenuItem newClass = new JMenuItem("New Class");
 	private JMenuItem addLink = new JMenuItem("Add Link");
 	private JMenuItem removeClass = new JMenuItem("Remove Class");
+	private JMenuItem generateJavaCode = new JMenuItem("Generate Java Code");
 	
-	public DesignFrameMenu() {
+	public DesignFrameMenu(DiagramPanel diagramPanel) {
 		this.add(fileMenu);
 		this.add(optionsMenu);
 		setVisible(true);
@@ -37,7 +38,7 @@ public class DesignFrameMenu extends JMenuBar {
 		/*
 		 * Refence the custom listener for the menu buttons
 		 */
-		DesignFrameMenuListener menuListener = new DesignFrameMenuListener();
+		DesignFrameMenuListener menuListener = new DesignFrameMenuListener(diagramPanel);
 		
         fileMenu.add(save);
         save.addActionListener(menuListener); //Adds listener to button.
@@ -56,6 +57,9 @@ public class DesignFrameMenu extends JMenuBar {
         
         optionsMenu.add(removeClass);
         removeClass.addActionListener(menuListener); //Adds listener to button.
+        
+        optionsMenu.add(generateJavaCode);
+        generateJavaCode.addActionListener(menuListener);
 	}
 
 }

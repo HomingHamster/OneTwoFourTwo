@@ -23,7 +23,7 @@ public class DesignFrame extends JFrame {
 		 * The following assigns a menubar defines in 
 		 * DesignFrameMenu to the frame.
 		 */
-		JMenuBar menuBar = new DesignFrameMenu();
+		JMenuBar menuBar = new DesignFrameMenu(diagramPanel);
 		setJMenuBar(menuBar);
 		
 		/*

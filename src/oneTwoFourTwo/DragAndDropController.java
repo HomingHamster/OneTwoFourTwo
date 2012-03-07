@@ -158,11 +158,11 @@ public class DragAndDropController extends MouseInputAdapter{
 	
 	public void addLink(String classOneName){
 		for (int i=0;i<components.size();i++){
-			if (components.get(i).name == classOneName){
+			if (components.get(i).name.equals(classOneName)){
 				String classTwoName = 
 					JOptionPane.showInputDialog("Enter Class Two Name:");
 				String oneToManyQuantifier = 
-					JOptionPane.showInputDialog("Enter a quantifier:");
+					JOptionPane.showInputDialog("Enter a cardinality:");
 				components.get(i).links.add(new Link(classTwoName, 
 						oneToManyQuantifier));
 				diagramPanel.repaint();

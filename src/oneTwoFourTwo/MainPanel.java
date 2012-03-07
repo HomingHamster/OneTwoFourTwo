@@ -33,10 +33,11 @@ public class MainPanel extends JPanel {
 		newClassButton.addActionListener(buttonListener);
 		
 		/*
-		 * Make a button, add on right. (not currently used).
+		 * Make a button, add on right.
 		 */
 		JButton addLinkButton = new JButton("Add Link"); 
 		this.add(addLinkButton, BorderLayout.LINE_END);
+		addLinkButton.addActionListener(buttonListener);
 	
 		/*
 		 * Stick the diagram pannel in the middle of the two buttons.
