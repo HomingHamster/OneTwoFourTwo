@@ -29,6 +29,7 @@ public class DesignFrameMenu extends JMenuBar {
 	private JMenuItem addLink = new JMenuItem("Add Link");
 	private JMenuItem removeClass = new JMenuItem("Remove Class");
 	private JMenuItem generateJavaCode = new JMenuItem("Generate Java Code");
+	private JMenuItem help = new JMenuItem("Help");
 	
 	public DesignFrameMenu(DiagramPanel diagramPanel) {
 		this.add(fileMenu);
@@ -59,7 +60,10 @@ public class DesignFrameMenu extends JMenuBar {
         removeClass.addActionListener(menuListener); //Adds listener to button.
         
         optionsMenu.add(generateJavaCode);
-        generateJavaCode.addActionListener(menuListener);
+        generateJavaCode.addActionListener(menuListener); //Adds listener to button.
+        
+        optionsMenu.add(help);
+        help.addActionListener(menuListener); //Adds listener to button.
 	}
 
 }
