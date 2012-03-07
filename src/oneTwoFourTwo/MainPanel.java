@@ -56,9 +56,21 @@ public class MainPanel extends JPanel {
         gridBag.setConstraints(addLinkButton,cons);
 		this.add(addLinkButton);
 		addLinkButton.addActionListener(buttonListener);
+		
+		/*
+		 * Make a button, add to grid (0,2) and watch for it being clicked.
+		 */
+		JButton generateButton = new JButton("Generate Java Code"); 
+		cons.fill = GridBagConstraints.HORIZONTAL;
+        cons.gridx = 0;
+        cons.gridy = 2;
+        cons.weightx = 1.0;
+        gridBag.setConstraints(generateButton,cons);
+		this.add(generateButton);
+		generateButton.addActionListener(buttonListener);
 	
 		/*
-		 * Stick the diagram pannel in the middle of the two buttons.
+		 * Stick the diagram pannel on the right.
 		 */
 		cons.fill = GridBagConstraints.BOTH;
         cons.gridx = 1;

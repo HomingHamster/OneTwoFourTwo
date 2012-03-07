@@ -29,6 +29,10 @@ public class MainPanelButtonListener implements ActionListener {
 			//not controller because we don't know where the
 			//link is coming from.
 			this.diagramPanel.addLink();
+		} else if(actionCommand.equals("Generate Java Code")){
+			//if code is requested then we generate it with the 
+			//method in the diagram panel
+			this.diagramPanel.generateCode();
 		} else {
 			System.out.println("Unexpected Command");
 		}

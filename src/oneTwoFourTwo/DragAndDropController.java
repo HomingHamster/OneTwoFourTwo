@@ -234,4 +234,12 @@ public class DragAndDropController extends MouseInputAdapter{
 			}
 		}
 	}
+	
+	/*
+	 * Feed correct info to the generator for code generation
+	 * not functional.
+	 */
+	public void generateCode(String fileLocation){
+		
+	}
 }

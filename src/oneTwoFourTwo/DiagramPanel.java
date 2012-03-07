@@ -10,6 +10,7 @@ package oneTwoFourTwo;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -87,6 +88,24 @@ public class DiagramPanel extends JPanel{
 	 */
 	public DragAndDropClassObject findNearestClass(int x, int y){
 		return controller.findNearestClass(x, y);
+	}
+	
+	/*
+	 * This function will take the code generated and will output it to 
+	 * bunch of files in a location that the user chooses.
+	 */
+	public void generateCode(){
+		JFileChooser fileopen = new JFileChooser();
+		String fileLocation;
+		fileopen.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+	    int returnVal = fileopen.showOpenDialog(this);
+	    if(returnVal == JFileChooser.APPROVE_OPTION) {
+	            fileLocation = fileopen.getSelectedFile().getName();
+	            controller.generateCode(fileLocation);
+	    } else {
+	    	//THROW A TANTRUM!!!
+	    }
+		
 	}
 
 }
