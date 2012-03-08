@@ -23,7 +23,7 @@ public class DiagramPanel extends JPanel{
 	 * Create an instance of the d and d controller to take 
 	 * care of the classes inputted.
 	 */
-	private DragAndDropController controller = 
+	public DragAndDropController controller = 
 		new DragAndDropController(this);
 	
 	/*

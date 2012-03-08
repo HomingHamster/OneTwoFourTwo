@@ -14,15 +14,17 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.io.Serializable;
 import java.util.Vector;
 
 import javax.swing.JPanel;
 
-//The following because we are not going to be deserialzing 
-//in another dimension any time soon.
-@SuppressWarnings("serial")
 
-public class DragAndDropClassObject extends JPanel {
+public class DragAndDropClassObject extends JPanel implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3644934051095422457L;
 	Vector<Link> links = new Vector<Link>();
 	ClassObject classObject;
 	Rectangle rect;
@@ -69,26 +71,43 @@ public class DragAndDropClassObject extends JPanel {
 				stringWidth = g.getFontMetrics().stringWidth(classObject.methods.get(i));
 			}
 		}
+		
+		//make the rectangle the width of the largest string plus 20px.
 		rect.width = stringWidth+20;
+		
+		//Ask the renderer to use antialiasing if possible.
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                             RenderingHints.VALUE_ANTIALIAS_ON);
+		
+		//set paint to black + draw outline of rect
 		g2.setPaint(Color.BLACK);
 		g2.draw(rect);
+		
+		//set paint to white + fill rectangle
 		g2.setPaint(Color.WHITE);
 		g2.fill(rect);
+		
+		//set paint to black + draw title and the line accross the top
+		//use the rectangle as a point of reference on the diagram panel.
 		g2.setPaint(Color.BLACK);
 		g2.drawString(name, rect.x+10, rect.y+20);
 		g2.drawLine(rect.x, rect.y+30, rect.x+stringWidth+20, rect.y+30);
 		
+		//for attributes draw the string, work out the placement based
+		//on how many attributes there are every time.
 		for(int i = 0; i < classObject.attributes.size(); i++){
 			String attrib = classObject.attributes.get(i);
 			g2.drawString(attrib, rect.x+10, rect.y+35+((lineHeight+2)*(i+1)));
 		}
 		
+		// Draw the line below the attributes above the methods.
+		// work out spacing based on how many attributes there are
 		g2.drawLine(rect.x, rect.y+40+
 				((lineHeight+2)*(classObject.attributes.size())), rect.x+stringWidth+20, rect.y+40+
 				((lineHeight+2)*(classObject.attributes.size())));
 		
+		//draw mathods, take into account the spacing of the lines and the
+		//amount of room the attributes take up.
 		for(int i = 0; i < classObject.methods.size(); i++){
 			String method = classObject.methods.get(i);
 			g2.drawString(method, rect.x+10, rect.y+45+

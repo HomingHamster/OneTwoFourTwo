@@ -35,11 +35,11 @@ public class DesignFrameMenuListener implements ActionListener {
 		}
 		
 		else if (actionCommand.equals("Generate Java Code")){
-			//TODO: generate
+			this.diagramPanel.generateCode();
 		}
 		
 		else if (actionCommand.equals("Save")){
-			//TODO: save somehow
+			SaveAndOpen.save(diagramPanel.controller, diagramPanel);
 		}
 		
 		else if (actionCommand.equals("Load")){

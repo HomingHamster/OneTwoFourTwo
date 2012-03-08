@@ -21,8 +21,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.event.MouseInputAdapter;
 
-public class DragAndDropController extends MouseInputAdapter{
-    Vector<DragAndDropClassObject> components = new Vector<DragAndDropClassObject>();
+import java.io.Serializable;
+
+public class DragAndDropController extends MouseInputAdapter implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 6189790404733855785L;
+	Vector<DragAndDropClassObject> components = new Vector<DragAndDropClassObject>();
     Point offset = new Point();
     boolean dragging = false;
     DiagramPanel diagramPanel;

@@ -1,0 +1,111 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 4036 bytes for HashtableBucket in C:\BUILD_AREA\jdk6_26\hotspot\src\share\vm\utilities/hashtable.inline.hpp
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (memory/allocation.inline.hpp:44), pid=15692, tid=9280
+#
+# JRE version: 6.0_26-b03
+# Java VM: Java HotSpot(TM) Client VM (20.1-b02 mixed mode, sharing windows-x86 )
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0185a000):  JavaThread "Unknown thread" [_thread_in_vm, id=9280, stack(0x01960000,0x019b0000)]
+
+Stack: [0x01960000,0x019b0000],  sp=0x019afcbc,  free space=319k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x13379a]
+V  [jvm.dll+0x12e78c]
+V  [jvm.dll+0x16e19]
+V  [jvm.dll+0x20b01]
+V  [jvm.dll+0x27d98]
+V  [jvm.dll+0x6c523]
+V  [jvm.dll+0x6c8fc]
+V  [jvm.dll+0xf9d5c]
+V  [jvm.dll+0x11864b]
+V  [jvm.dll+0x9ec30]
+C  [javaw.exe+0x1657]
+C  [javaw.exe+0x1e2c]
+C  [javaw.exe+0x8644]
+C  [kernel32.dll+0x4ed6c]  BaseThreadInitThunk+0x12
+C  [ntdll.dll+0x6377b]  RtlInitializeExceptionChain+0xef
+C  [ntdll.dll+0x6374e]  RtlInitializeExceptionChain+0xc2
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x0185a000 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=9280, stack(0x01960000,0x019b0000)]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Dynamic libraries:
+0x00400000 - 0x00424000 	C:\Program Files\Java\jre6\bin\javaw.exe
+0x778a0000 - 0x779dc000 	C:\Windows\SYSTEM32\ntdll.dll
+0x761c0000 - 0x76294000 	C:\Windows\system32\kernel32.dll
+0x75a70000 - 0x75aba000 	C:\Windows\system32\KERNELBASE.dll
+0x76610000 - 0x766b0000 	C:\Windows\system32\ADVAPI32.dll
+0x76940000 - 0x769ec000 	C:\Windows\system32\msvcrt.dll
+0x76000000 - 0x76019000 	C:\Windows\SYSTEM32\sechost.dll
+0x764c0000 - 0x76561000 	C:\Windows\system32\RPCRT4.dll
+0x76820000 - 0x768e9000 	C:\Windows\system32\USER32.dll
+0x76020000 - 0x7606e000 	C:\Windows\system32\GDI32.dll
+0x761b0000 - 0x761ba000 	C:\Windows\system32\LPK.dll
+0x76780000 - 0x7681d000 	C:\Windows\system32\USP10.dll
+0x75f50000 - 0x75f6f000 	C:\Windows\system32\IMM32.DLL
+0x766b0000 - 0x7677c000 	C:\Windows\system32\MSCTF.dll
+0x6fa00000 - 0x6fa38000 	C:\PROGRA~1\Sophos\SOPHOS~1\SOPHOS~1.DLL
+0x77ac0000 - 0x77ac5000 	C:\Windows\system32\PSAPI.DLL
+0x7c340000 - 0x7c396000 	C:\Program Files\Java\jre6\bin\msvcr71.dll
+0x6d7f0000 - 0x6da9f000 	C:\Program Files\Java\jre6\bin\client\jvm.dll
+0x72ed0000 - 0x72f02000 	C:\Windows\system32\WINMM.dll
+0x758f0000 - 0x7593c000 	C:\Windows\system32\apphelp.dll
+0x6d7a0000 - 0x6d7ac000 	C:\Program Files\Java\jre6\bin\verify.dll
+0x6d320000 - 0x6d33f000 	C:\Program Files\Java\jre6\bin\java.dll
+0x6d7e0000 - 0x6d7ef000 	C:\Program Files\Java\jre6\bin\zip.dll
+
+VM Arguments:
+jvm_args: -Dfile.encoding=Cp1252 
+java_command: oneTwoFourTwo.MainDriver
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=C:\Progra~1\Java\jdk1.6.0_26
+CLASSPATH=.;c:\progra~1\junit4.4\junit-4.4.jar;C:\Progra~1\jmf2.1.1e\lib\sound.jar;C:\Progra~1\jmf2.1.1e\lib\jmf.jar;C:\Windows\java\classes;
+PATH=C:/Program Files/Java/jre6/bin/client;C:/Program Files/Java/jre6/bin;C:\Program Files\JavaFX\javafx-sdk1.3\bin;C:\Program Files\JavaFX\javafx-sdk1.3\emulator\bin;C:\Program Files\MiKTeX 2.9\miktex\bin;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Windows Live\Shared;C:\Program Files\Common Files\Sage SData\;C:\Program Files\Common Files\Sage SBD\;C:\Program Files\Common Files\GTK\2.0\bin;C:\Program Files\QuickTime\QTSystem\;C:\Program Files\Common Files\Roxio Shared\DLLShared\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files\MiKTeX 2.8\miktex\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;c:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files\Common Files\Sage SData\;C:\Program Files\Common Files\Sage SBD\;C:\Program Files\QuickTime\QTSystem\;C:\Program Files\Common Files\GTK\2.0\bin;C:\Program Files\Common Files\Roxio Shared\DLLShared\;C:\Program Files\TortoiseSVN\bin;C:\Progra~1\Java\jdk1.6.0_26\bin;c:\progra~1\apache-ant-1.8.0\bin;c:\progra~1\jmf2.1.1e\lib;c:\progra~1\android-sdk\tools;c:\progra~1\android-sdk\platform-tools;C:\strawberry\c\bin;C:\strawberry\perl\bin;C:\Program Files\Groovy\Groovy-1.7.2\bin;C:\Program Files\Grails\bin;C:\Program Files\ghc-7.0.1\bin;C:\Program Files\Ruby\bin;C:\Program Files\Subversion
+USERNAME=fef
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=x86 Family 6 Model 23 Stepping 6, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 7 Build 7601 Service Pack 1
+
+CPU:total 2 (2 cores per cpu, 1 threads per core) family 6 model 23 stepping 6, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1
+
+Memory: 4k page, physical 2061936k(218952k free), swap 8247744k(6788k free)
+
+vm_info: Java HotSpot(TM) Client VM (20.1-b02) for windows-x86 JRE (1.6.0_26-b03), built on May  4 2011 00:50:59 by "java_re" with MS VC++ 7.1 (VS2003)
+
+time: Thu Mar 08 05:35:51 2012
+elapsed time: 0 seconds
+

@@ -16,7 +16,7 @@ public class CodeGenerator {
 	//TODO: allow this to interpret methods where more than one argument
 	// needs to be passed into the method
 	static Pattern methodPattern = 
-		Pattern.compile("^([-+])\\s?([a-zA-Z]+)[[\\(([a-zA-Z]+)\\s([a-zA-Z]+)\\)][\\(\\)]]?:\\s?([a-zA-Z]+)$");
+		Pattern.compile("^([+-])\\s?([a-zA-Z]+)(?:\\(\\)|\\(([a-zA-Z]+)\\s([a-zA-Z]+)\\)):\\s?([a-zA-Z]+)");
 	
 	/*
 	 * This is what the menu should call when the generate code button
@@ -70,19 +70,19 @@ public class CodeGenerator {
 			matcher = attributePattern.matcher(attribute);
 			// 3 - Check it worked
 			System.out.println(String.valueOf(matcher.groupCount()));
-			if (matcher.matches() && matcher.groupCount()== 2){
+			if (matcher.matches() && matcher.groupCount()== 3){
 				
 				// 4 - Print public or private:
-				if (matcher.group(0).equals("-")){
+				if (matcher.group(1).equals("-")){
 					output += "private ";
-				} else if (matcher.group(0).equals("+")){
+				} else if (matcher.group(1).equals("+")){
 					output += "public ";
 				}
 				
 				// 5 - print the rest of the line in correct
 				// order with newline.
 				output += matcher.group(3) + " " + matcher.group(2) 
-							+ "() {\n";
+							+ ";\n\n";
 			} else { // If there is no match
 				// Stick an error in the output. (as comment);
 				output += "//error reading " + attribute + "\n";
@@ -101,36 +101,36 @@ public class CodeGenerator {
 			//if there are 5 things matched, it means the user did
 			//provide an argument for their method, so we take 
 			//according action...
-			if (matcher.matches() && matcher.groupCount() == 4){
+			if (matcher.matches() && matcher.groupCount() == 5){
 				//Figure out if it is public or private
-				if (matcher.group(0).equals("-")){
+				if (matcher.group(1).equals("-")){
 					output += "private ";
-				} else if (matcher.group(0).equals("+")){
+				} else if (matcher.group(1).equals("+")){
 					output += "public ";
 				}
 				//output type
-				output += matcher.group(4) + " ";
+				output += matcher.group(5) + " ";
 				//output name
-				output += matcher.group(1) + " (";
+				output += matcher.group(2) + " (";
 				//output argument type
-				output += matcher.group(2) + " ";
+				output += matcher.group(3) + " ";
 				//output argument name plus finish off method
-				output += matcher.group(3) + ") {\n\n" + tab + "}";
+				output += matcher.group(4) + ") {\n\n" + tab + "}\n\n";
 			} 
 			//if there are only 3 things matched, then the user
 			//did not provide an argument for the method, so we
 			//take according action.
-			else if (matcher.matches() && matcher.groupCount() == 2){
+			else if (matcher.matches() && matcher.groupCount() == 3){
 				//Figure out if it is public or private
-				if (matcher.group(0).equals("-")){
+				if (matcher.group(1).equals("-")){
 					output += "private ";
-				} else if (matcher.group(0).equals("+")){
+				} else if (matcher.group(1).equals("+")){
 					output += "public ";
 				}
 				//output type
-				output += matcher.group(2) + " ";
+				output += matcher.group(3) + " ";
 				//output name and finsh the method off
-				output += matcher.group(1) + "() {\n\n" + tab + "}";
+				output += matcher.group(2) + "() {\n\n" + tab + "}\n\n";
 			}
 		}
 		

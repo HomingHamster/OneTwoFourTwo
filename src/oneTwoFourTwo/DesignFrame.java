@@ -20,7 +20,11 @@ public class DesignFrame extends JFrame {
 	private MainPanel mainPanel = new MainPanel(diagramPanel);
 	
 	public DesignFrame(){
-		
+		/*
+		 * make sure the application acctually quits when we
+		 * close it from the frame.
+		 */
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		/*
 		 * The following assigns a menubar defines in 

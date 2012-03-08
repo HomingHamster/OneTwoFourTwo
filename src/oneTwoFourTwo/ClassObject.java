@@ -8,9 +8,14 @@
  */
 
 package oneTwoFourTwo;
+import java.io.Serializable;
 import java.util.Vector;
 
-public class ClassObject {
+public class ClassObject implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 468249410923428473L;
 	public String name;
 	public String description;
 	public Vector<String> attributes = new Vector<String>();
