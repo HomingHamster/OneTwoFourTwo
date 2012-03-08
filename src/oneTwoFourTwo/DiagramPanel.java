@@ -97,12 +97,16 @@ public class DiagramPanel extends JPanel{
 	public void generateCode(){
 		JFileChooser fileopen = new JFileChooser();
 		String fileLocation;
+		//We only want a directory, not a file, because we already know 
+		//the filename.
 		fileopen.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 	    int returnVal = fileopen.showOpenDialog(this);
+	    //If it worked then pass the directory location to the generate
+	    //code function in the controller.
 	    if(returnVal == JFileChooser.APPROVE_OPTION) {
-	            fileLocation = fileopen.getSelectedFile().getName();
+	            fileLocation = fileopen.getSelectedFile().getPath();
 	            controller.generateCode(fileLocation);
-	    } else {
+	    } else { //If it didn't work:
 	    	//THROW A TANTRUM!!!
 	    }
 		

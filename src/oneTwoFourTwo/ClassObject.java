@@ -13,12 +13,8 @@ import java.util.Vector;
 public class ClassObject {
 	public String name;
 	public String description;
-	/*
-	 * The following two attributes are not used yet, but they are
-	 * available for use later.
-	 */
-	public Vector<String> attributes;
-	public Vector<String> methods;
+	public Vector<String> attributes = new Vector<String>();
+	public Vector<String> methods = new Vector<String>();
 	
 	/*
 	 * On initial creation only assign a name and description,

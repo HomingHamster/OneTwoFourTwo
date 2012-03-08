@@ -11,6 +11,10 @@ import java.awt.event.*;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
@@ -236,10 +240,43 @@ public class DragAndDropController extends MouseInputAdapter{
 	}
 	
 	/*
-	 * Feed correct info to the generator for code generation
-	 * not functional.
+	 * Feed correct info to the generator for code generation.
 	 */
 	public void generateCode(String fileLocation){
-		
+		//Make a list of Strings and populate it with the generated code
+		//from the generator.
+		Vector<String> output = CodeGenerator.generateCodeForVectorOfClasses(components);
+		//for each string in the list (which is a file)
+		for (String file:output){
+			//find out the name of the file from the comment on the
+			//top line of the string.
+			String topline = file.split("\\n")[0];
+			String file_name = topline.split("/")[2];
+			//reference a file with the selected path and name:
+			File writeFile = new File(fileLocation + "\\" + file_name);
+			//check if it exists already
+			boolean exist = true;
+			try {
+				exist = writeFile.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			if (!exist) {
+				  System.out.println("File already exists.");
+			} else {
+				//If it doesn't exist, then proceed with writing to it.
+				//try catch in case it doesn't work here.
+				FileWriter fstream = null;
+				try {
+					fstream = new FileWriter(fileLocation + "\\" + file_name);
+					BufferedWriter out = new BufferedWriter(fstream);
+					out.write(file); //output the file
+					out.close();
+				} catch (IOException e) {
+					//catch any errors here.
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 }
