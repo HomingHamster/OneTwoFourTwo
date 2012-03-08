@@ -50,7 +50,25 @@ public class DragAndDropClassObject extends JPanel {
 	 */
 	public void paintComponent(Graphics g){
 		Graphics2D g2 = (Graphics2D)g;
+		rect.height = 75; //reset every draw, otherwise it will continually grow on repaint.
 		int stringWidth = g.getFontMetrics().stringWidth(name);
+		int lineHeight = g.getFontMetrics().getHeight()+5;
+		//For every attribute, add a new line's worth of space virtically in rect
+		//plus assess to see if the text is wider, and if it is then save the new
+		//textwidth into stringWidth to make the box wider.
+		for (int i = 0; i < classObject.attributes.size(); i++){
+			rect.height += lineHeight;
+			if (stringWidth<g.getFontMetrics().stringWidth(classObject.attributes.get(i))){
+				stringWidth = g.getFontMetrics().stringWidth(classObject.attributes.get(i));
+			}
+		}
+		//Does the same as the above code, but for the methods.
+		for (int i = 0; i < classObject.methods.size(); i++){
+			rect.height += lineHeight;
+			if (stringWidth<g.getFontMetrics().stringWidth(classObject.methods.get(i))){
+				stringWidth = g.getFontMetrics().stringWidth(classObject.methods.get(i));
+			}
+		}
 		rect.width = stringWidth+20;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                             RenderingHints.VALUE_ANTIALIAS_ON);
@@ -61,6 +79,22 @@ public class DragAndDropClassObject extends JPanel {
 		g2.setPaint(Color.BLACK);
 		g2.drawString(name, rect.x+10, rect.y+20);
 		g2.drawLine(rect.x, rect.y+30, rect.x+stringWidth+20, rect.y+30);
+		
+		for(int i = 0; i < classObject.attributes.size(); i++){
+			String attrib = classObject.attributes.get(i);
+			g2.drawString(attrib, rect.x+10, rect.y+35+((lineHeight+2)*(i+1)));
+		}
+		
+		g2.drawLine(rect.x, rect.y+40+
+				((lineHeight+2)*(classObject.attributes.size())), rect.x+stringWidth+20, rect.y+40+
+				((lineHeight+2)*(classObject.attributes.size())));
+		
+		for(int i = 0; i < classObject.methods.size(); i++){
+			String method = classObject.methods.get(i);
+			g2.drawString(method, rect.x+10, rect.y+45+
+					((lineHeight+2)*(classObject.attributes.size()+1))+
+					(lineHeight+2)*(i));
+		}
 	}
 	
 	/*

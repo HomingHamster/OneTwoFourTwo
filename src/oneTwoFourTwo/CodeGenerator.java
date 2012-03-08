@@ -9,14 +9,14 @@ public class CodeGenerator {
 	// This regular expression will spilt the attribute line into the
 	// three necessarry parts when it is used.
 	static Pattern attributePattern = 
-		Pattern.compile("^([-+])\\s?([a-zA-z]+):\\s?([a-z]+)$");
+		Pattern.compile("^([-+])\\s?([a-zA-Z]+):\\s?([a-zA-Z]+)$");
 	
 	// This regular expression will spilt the method line into the
 	// necessarry parts when it is used.
 	//TODO: allow this to interpret methods where more than one argument
 	// needs to be passed into the method
 	static Pattern methodPattern = 
-		Pattern.compile("^([-+])\\s?([a-zA-z]+)[[\\(([a-z]+)\\s([a-z]+)\\)][\\(\\)]]?:\\s?([a-z]+)$");
+		Pattern.compile("^([-+])\\s?([a-zA-Z]+)[[\\(([a-zA-Z]+)\\s([a-zA-Z]+)\\)][\\(\\)]]?:\\s?([a-zA-Z]+)$");
 	
 	/*
 	 * This is what the menu should call when the generate code button
@@ -69,6 +69,7 @@ public class CodeGenerator {
 			// 2 - Apply the regex
 			matcher = attributePattern.matcher(attribute);
 			// 3 - Check it worked
+			System.out.println(String.valueOf(matcher.groupCount()));
 			if (matcher.matches() && matcher.groupCount()== 2){
 				
 				// 4 - Print public or private:

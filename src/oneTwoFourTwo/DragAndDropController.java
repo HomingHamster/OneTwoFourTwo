@@ -55,7 +55,7 @@ public class DragAndDropController extends MouseInputAdapter{
 	        	//blank icon because i can't figure out how to not have one
 	        	ImageIcon icon = new ImageIcon("");
 	        	//set options for the dialog
-	        	Object[] possibilities = {"rename", "delete", "add link"};
+	        	Object[] possibilities = {"rename", "delete", "add link", "add attribute", "add method"};
 	        	//present dialog and save answer to s
 				String s = (String)JOptionPane.showInputDialog(diagramPanel, 
 	        			"What would you like to do to the class?", 
@@ -74,6 +74,18 @@ public class DragAndDropController extends MouseInputAdapter{
 	        	} else if (s=="add link"){
 	        		addLink(components.get(i).name);
 	        		return;
+	        	} else if (s=="add attribute"){
+	        		DragAndDropClassObject component = components.get(i);
+	        		String attribute = 
+						JOptionPane.showInputDialog("Enter attrubute details:\neg. \"-timeTaken:String\"");
+	        		component.classObject.attributes.add(attribute);
+	        		diagramPanel.repaint();
+	        	} else if (s=="add method"){
+	        		DragAndDropClassObject component = components.get(i);
+	        		String method = 
+						JOptionPane.showInputDialog("Enter method details:\neg. \"-getBanana(String time):String\"");
+	        		component.classObject.methods.add(method);
+	        		diagramPanel.repaint();
 	        	} else {
 	        		System.out.println("uh oh!");
 	        		return;
