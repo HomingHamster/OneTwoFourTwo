@@ -24,6 +24,11 @@ To move one of the classes on your diagrams, simply place your mouse above the c
 Select the class to which you wish to add an attribute, and then double click on said class to open the dropdown menu, before selecting the ‘Add Attribute’ option.  This will then open an input field in which you may place the criteria for your attribute.
 2.2 – Adding Methods
 Select the class to which you wish to add an method, and then double click on said class to open the dropdown menu, before selecting the ‘Add Method’ option.  This will then open an input field in which you may place the criteria for your method.
+2.3 – Editing Attributes
+To edit an attribute on a class, double click on the class in question to open the dropdown menu, then select ‘edit attribute’ followed by ok. This will then display a full list of all attributes which have been entered into the class, and using the dropdown menu you may then select the one you wish to edit, and after doing so an input box will appear containing the full text from the attribute and allowing you to make the changes you wish. Finally select ok to save the attribute in its new form on the class.
+2.4 – Editing Methods
+To edit a method on a class, double click on the class in question to open the dropdown menu, then select ‘edit method’ followed by ok. This will then display a full list of all methods assigned to the class, and using the dropdown menu you may then select the one you wish to edit. After doing so an input box will appear containing the full text from the method and allowing you to make the changes you wish before finally selecting ok to save the method in its new form on the class.
+
 3.0 – Generating Javacode
 To generate the Java code for the classes and links you have created though use of the GUI diagrams you may select one of two options: 
 1) Select the button option to the left of the diagram. You will then be asked to select a location for the generated code to be saved.
