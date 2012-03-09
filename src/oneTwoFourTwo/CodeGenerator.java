@@ -18,6 +18,12 @@ public class CodeGenerator {
 	static Pattern methodPattern = 
 		Pattern.compile("^([+-])\\s?([a-zA-Z]+)(?:\\(\\)|\\(([a-zA-Z]+)\\s([a-zA-Z]+)\\)):\\s?([a-zA-Z]+)");
 	
+	// This regular expression matches positive if we need to make an
+	// array list to hold the class that the Link this function is applied 
+	// to is linked to. Ie.
+	static Pattern cardinalityPattern =
+		Pattern.compile("^[0-9]+\\.\\.[2-9*]+$");
+	
 	/*
 	 * This is what the menu should call when the generate code button
 	 * is pressed, it will take a list of classes and generate the code 
@@ -58,6 +64,30 @@ public class CodeGenerator {
 		output += "\n";
 		output += "public class " + classObject.name + "{\n";
 		output += "\n";
+		
+		for (Link link:classObject.links){
+			matcher = cardinalityPattern.matcher(link.quantifier);
+			output += tab; //begin the line with a tab
+			/*
+			 * If we have a match then the relationship is somthing to many
+			 * so we make an arraylist to hold the other classes.
+			 * If it fails then we have a somthing to one relationship and 
+			 * all we need is a single reference to the other class.
+			 */
+			if (matcher.matches()){ //a somthing to many relationship
+				output += "private ArrayList<";
+				output += link.classTwoName;
+				output += "> ";
+				output += link.classTwoName.toLowerCase() + "s";
+			} else { //a somthing to ONE replationshit.
+				output += "private ";
+				output += link.classTwoName + " ";
+				output += link.classTwoName.toLowerCase();
+				
+			}
+			
+			output += ";\n"; //end the line with a semicolon and a newline
+		}
 
 		String attribute;
 		
