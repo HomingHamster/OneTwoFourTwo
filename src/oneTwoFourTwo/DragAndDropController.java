@@ -163,7 +163,7 @@ public class DragAndDropController extends MouseInputAdapter implements Serializ
 		DragAndDropClassObject obj;
 		for (int i=0;i<components.size();i++){
 			obj = components.get(i);
-			if (obj.name == name){
+			if (obj.name.equals(name)){
 				components.remove(i);
 				diagramPanel.repaint();
 				return;

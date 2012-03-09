@@ -47,7 +47,15 @@ public class DesignFrameMenuListener implements ActionListener {
 		}
 		
 		else if (actionCommand.equals("Remove Class")){
-			//TODO: remove class
+			this.diagramPanel.removeClass();
+		}
+		
+		else if (actionCommand.equals("New")){
+			this.diagramPanel.controller = 
+				new DragAndDropController(this.diagramPanel);
+			this.diagramPanel.addMouseListener(this.diagramPanel.controller);
+			this.diagramPanel.addMouseMotionListener(this.diagramPanel.controller);
+			this.diagramPanel.repaint();
 		}
 		
 		else if (actionCommand.equals("Help")){

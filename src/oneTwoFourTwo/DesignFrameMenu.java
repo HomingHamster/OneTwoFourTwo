@@ -21,6 +21,7 @@ public class DesignFrameMenu extends JMenuBar {
 	private JMenu fileMenu = new JMenu("File");
 	private JMenu optionsMenu = new JMenu("Options");
 	
+	private JMenuItem newDiagram = new JMenuItem("New");
 	private JMenuItem save = new JMenuItem("Save");
 	private JMenuItem open = new JMenuItem("Open");
 	private JMenuItem quit = new JMenuItem("Quit");
@@ -40,6 +41,9 @@ public class DesignFrameMenu extends JMenuBar {
 		 * Refence the custom listener for the menu buttons
 		 */
 		DesignFrameMenuListener menuListener = new DesignFrameMenuListener(diagramPanel);
+		
+		fileMenu.add(newDiagram);
+		newDiagram.addActionListener(menuListener); //Adds listener to button.
 		
         fileMenu.add(save);
         save.addActionListener(menuListener); //Adds listener to button.
