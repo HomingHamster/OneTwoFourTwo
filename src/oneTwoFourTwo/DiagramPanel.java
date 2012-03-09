@@ -82,6 +82,17 @@ public class DiagramPanel extends JPanel{
 	}
 	
 	/*
+	 * Asks for relevant info about editing a link with no prior knowledge
+	 * then ask controller to take over.
+	 */
+	public void editLink(){
+		String classOneName = JOptionPane.showInputDialog("Enter Class One Name:");
+		String classTwoName = JOptionPane.showInputDialog("Enter Class Two Name:");
+		controller.editLink(classOneName, classTwoName);
+		this.repaint();
+	}
+	
+	/*
 	 * Shortcut to the d and d controller's find nearest class function
 	 * the work is done in the other class because that is where the 
 	 * information is stored.

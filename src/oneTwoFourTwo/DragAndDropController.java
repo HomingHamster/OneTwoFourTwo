@@ -86,12 +86,14 @@ public class DragAndDropController extends MouseInputAdapter implements Serializ
 						JOptionPane.showInputDialog("Enter attrubute details:\neg. \"-timeTaken:String\"");
 	        		component.classObject.attributes.add(attribute);
 	        		diagramPanel.repaint();
+	        		return;
 	        	} else if (s=="add method"){
 	        		DragAndDropClassObject component = components.get(i);
 	        		String method = 
 						JOptionPane.showInputDialog("Enter method details:\neg. \"-getBanana(String time):String\"");
 	        		component.classObject.methods.add(method);
 	        		diagramPanel.repaint();
+	        		return;
 	        	} else {
 	        		System.out.println("uh oh!");
 	        		return;
@@ -189,6 +191,49 @@ public class DragAndDropController extends MouseInputAdapter implements Serializ
 						oneToManyQuantifier));
 				diagramPanel.repaint();
 				return;
+			}
+		}
+	}
+	
+	public void editLink(String classOneName, String classTwoName){
+		for (int i=0;i<components.size();i++){
+			if (components.get(i).name.equals(classOneName)){
+				for (int j = 0; j<components.get(i).links.size(); j++){
+					if (components.get(i).links.get(j).classTwoName.equals(classTwoName)){
+			        	//blank icon because i can't figure out how to not have one
+			        	ImageIcon icon = new ImageIcon("");
+			        	//set options for the dialog
+			        	Object[] possibilities = {"change cardinality", "delete", "change class two"};
+			        	//present dialog and save answer to s
+						String s = (String)JOptionPane.showInputDialog(diagramPanel, 
+			        			"What would you like to do to the link?", 
+			        			"Modify link..", 
+			        			JOptionPane.PLAIN_MESSAGE, 
+			        			icon, 
+			        			possibilities, 
+			        			"delete");
+						//Asses the value returned and call necessarry function
+			        	if (s=="delete"){
+			        		components.get(i).links.remove(j);
+			        		JOptionPane.showMessageDialog(this.diagramPanel, "Success!\nLink removed!");
+			        		this.diagramPanel.repaint();
+			        		return;
+			        	} else if (s=="change cardinality"){
+			        		String newCardinality = JOptionPane.showInputDialog("Enter a new cardinality:\nEg. 1..*");
+			        		components.get(i).links.get(j).quantifier = newCardinality;
+			        		this.diagramPanel.repaint();
+			        		return;
+			        	} else if (s=="change class two"){
+			        		String newClassTwoName = JOptionPane.showInputDialog("Enter new Class Two Name:\nEg. Cheese");
+			        		components.get(i).links.get(j).classTwoName = newClassTwoName;
+			        		this.diagramPanel.repaint();
+			        		return;
+			        	} else {
+			        		System.out.println("uh oh!");
+			        		return;
+			        	}
+					}
+				}
 			}
 		}
 	}

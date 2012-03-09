@@ -33,6 +33,12 @@ public class MainPanelButtonListener implements ActionListener {
 			//if code is requested then we generate it with the 
 			//method in the diagram panel
 			this.diagramPanel.generateCode();
+		} else if(actionCommand.equals("Edit or Delete a Link")){
+			//If we need to edit a link, then ask the diagram
+			//panel to do it.
+			this.diagramPanel.editLink();
+		} else if(actionCommand.equals("Get Help")){
+			//Display help!!
 		} else {
 			System.out.println("Unexpected Command");
 		}

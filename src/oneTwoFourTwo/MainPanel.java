@@ -63,12 +63,36 @@ public class MainPanel extends JPanel {
 		JButton generateButton = new JButton("Generate Java Code"); 
 		cons.fill = GridBagConstraints.HORIZONTAL;
         cons.gridx = 0;
-        cons.gridy = 2;
+        cons.gridy = 3;
         cons.weightx = 1.0;
         gridBag.setConstraints(generateButton,cons);
 		this.add(generateButton);
 		generateButton.addActionListener(buttonListener);
+		
+		/*
+		 * Make a button, add to grid (0,2) and watch for it being clicked.
+		 */
+		JButton editLinkButton = new JButton("Edit or Delete a Link"); 
+		cons.fill = GridBagConstraints.HORIZONTAL;
+        cons.gridx = 0;
+        cons.gridy = 2;
+        cons.weightx = 1.0;
+        gridBag.setConstraints(editLinkButton,cons);
+		this.add(editLinkButton);
+		editLinkButton.addActionListener(buttonListener);
 	
+		/*
+		 * Make a button, add to grid (0,2) and watch for it being clicked.
+		 */
+		JButton helpButton = new JButton("Get Help"); 
+		cons.fill = GridBagConstraints.HORIZONTAL;
+        cons.gridx = 0;
+        cons.gridy = 4;
+        cons.weightx = 1.0;
+        gridBag.setConstraints(helpButton,cons);
+		this.add(helpButton);
+		helpButton.addActionListener(buttonListener);
+		
 		/*
 		 * Stick the diagram pannel on the right.
 		 */
@@ -77,7 +101,7 @@ public class MainPanel extends JPanel {
         cons.gridy = 0;
         cons.weightx = 6.0;
         cons.weighty = 1.0;
-        cons.gridheight = 3;
+        cons.gridheight = 99;
         gridBag.setConstraints(diagramPanel,cons);
 		this.add(diagramPanel);
 	}
