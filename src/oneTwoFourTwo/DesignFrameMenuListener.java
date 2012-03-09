@@ -42,8 +42,8 @@ public class DesignFrameMenuListener implements ActionListener {
 			SaveAndOpen.save(diagramPanel.controller, diagramPanel);
 		}
 		
-		else if (actionCommand.equals("Load")){
-			//TODO: load maybe
+		else if (actionCommand.equals("Open")){
+			this.diagramPanel.loadIn(SaveAndOpen.open(this.diagramPanel));
 		}
 		
 		else if (actionCommand.equals("Remove Class")){

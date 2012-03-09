@@ -9,10 +9,10 @@ import java.io.ObjectOutputStream;
 import javax.swing.JFileChooser;
 
 public class SaveAndOpen {
-	public static DragAndDropController open(DesignFrame designFrame){
+	public static DragAndDropController open(DiagramPanel diagramPanel){
 		JFileChooser fileSelect = new JFileChooser();
 		fileSelect.setFileSelectionMode(JFileChooser.FILES_ONLY);
-	    int returnVal = fileSelect.showOpenDialog(designFrame);
+	    int returnVal = fileSelect.showOpenDialog(diagramPanel);
 	    //If it worked then pass the directory location to the generate
 	    //code function in the controller.
 	    if(returnVal == JFileChooser.APPROVE_OPTION) {

@@ -111,5 +111,19 @@ public class DiagramPanel extends JPanel{
 	    }
 		
 	}
+	
+	/*
+	 * Accept a new drag and drop controller and save it where it should be
+	 * then repaint.
+	 */
+	public void loadIn(DragAndDropController controller){
+		//load in controller
+		this.controller = controller;
+		//reset listeners
+		this.addMouseListener(controller);
+		this.addMouseMotionListener(controller);
+		//redraw
+		this.repaint();
+	}
 
 }
