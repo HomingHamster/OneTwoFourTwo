@@ -164,6 +164,15 @@ public class DragAndDropController extends MouseInputAdapter implements Serializ
 		for (int i=0;i<components.size();i++){
 			obj = components.get(i);
 			if (obj.name.equals(name)){
+				for (DragAndDropClassObject classObject:components){
+					for (int j = 0; j<classObject.links.size(); j++){
+						Link link = classObject.links.get(i);
+						if (link.classTwoName.equals(obj.name)){
+							classObject.links.remove(i);
+							j--;
+						}
+					}
+				}
 				components.remove(i);
 				diagramPanel.repaint();
 				return;
@@ -173,9 +182,17 @@ public class DragAndDropController extends MouseInputAdapter implements Serializ
 	
 	public void renameClass(String oldName){
 		for (int i=0;i<components.size();i++){
-			if (components.get(i).name == oldName){
-				components.get(i).name = 
-					JOptionPane.showInputDialog("Enter Class Name:");;
+			if (components.get(i).name.equals(oldName)){
+				String newName = 
+					JOptionPane.showInputDialog("Enter Class Name:");
+				for (DragAndDropClassObject classObject:components){
+					for(Link link:classObject.links){
+						if (link.classTwoName.equals(oldName)){
+							link.classTwoName = newName;
+						}
+					}
+				}
+				components.get(i).name = newName;
 				diagramPanel.repaint();
 				return;
 			}
