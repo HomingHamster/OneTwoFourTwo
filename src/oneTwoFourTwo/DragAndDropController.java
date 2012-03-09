@@ -24,9 +24,6 @@ import javax.swing.event.MouseInputAdapter;
 import java.io.Serializable;
 
 public class DragAndDropController extends MouseInputAdapter implements Serializable{
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 6189790404733855785L;
 	Vector<DragAndDropClassObject> components = new Vector<DragAndDropClassObject>();
     Point offset = new Point();
@@ -40,14 +37,6 @@ public class DragAndDropController extends MouseInputAdapter implements Serializ
     public DragAndDropController(DiagramPanel dp){
     	this.diagramPanel = dp;
     }
- 
-//    public void addDragAndDropController(DragAndDropClassObject gdad, DiagramPanel diagramPanel) {
-//        DragAndDropClassObject newComponent = gdad;
-//        newComponent.addMouseListener(this);
-//        newComponent.addMouseMotionListener(this);
-//        component.add(newComponent);
-//        this.diagramPanel = diagramPanel;
-//    }
     
     /*
      * If mouse is clicked then show an option dialog to ask what
@@ -61,7 +50,8 @@ public class DragAndDropController extends MouseInputAdapter implements Serializ
 	        	//blank icon because i can't figure out how to not have one
 	        	ImageIcon icon = new ImageIcon("");
 	        	//set options for the dialog
-	        	Object[] possibilities = {"rename", "delete", "add link", "add attribute", "add method"};
+	        	Object[] possibilities = {"delete", "rename", "add link", "edit links", 
+	        			"add attribute", "edit attributes", "add method", "edit methods"};
 	        	//present dialog and save answer to s
 				String s = (String)JOptionPane.showInputDialog(diagramPanel, 
 	        			"What would you like to do to the class?", 
@@ -93,6 +83,18 @@ public class DragAndDropController extends MouseInputAdapter implements Serializ
 						JOptionPane.showInputDialog("Enter method details:\neg. \"-getBanana(String time):String\"");
 	        		component.classObject.methods.add(method);
 	        		diagramPanel.repaint();
+	        		return;
+	        	} else if (s=="edit links"){
+	        		String classTwoName = 
+						JOptionPane.showInputDialog("Enter Class Two name:");
+	        		this.editLink(components.get(i).name, classTwoName);
+	        		this.diagramPanel.repaint();
+	        		return;
+	        	} else if (s=="edit methods"){
+	        		this.editMethods(components.get(i));
+	        		return;
+	        	} else if (s=="edit attributes"){
+	        		this.editAttributes(components.get(i));
 	        		return;
 	        	} else {
 	        		System.out.println("uh oh!");
@@ -195,6 +197,58 @@ public class DragAndDropController extends MouseInputAdapter implements Serializ
 		}
 	}
 	
+	public void editAttributes(DragAndDropClassObject ddClassObject){
+		Vector<Object> attributes = new Vector<Object>();
+		ImageIcon icon = new ImageIcon("");
+		for (String attribute:ddClassObject.classObject.attributes){
+			attributes.add(attribute);
+		}
+		Object[] possibilities = attributes.toArray();
+		String s = (String)JOptionPane.showInputDialog(diagramPanel, 
+    			"Which attribute to edit?", 
+    			"Modify attribute..", 
+    			JOptionPane.PLAIN_MESSAGE, 
+    			icon, 
+    			possibilities, 
+    			"");
+		String newAttrib = "";
+		for (int i = 0; i < ddClassObject.classObject.attributes.size(); i++){
+			String attribute = ddClassObject.classObject.attributes.get(i);
+			if (s.equals(attribute)){
+				newAttrib = JOptionPane.showInputDialog(this.diagramPanel, 
+						"Enter a new value for this attribute:", attribute);
+				ddClassObject.classObject.attributes.set(i, newAttrib);
+			}
+		}
+		this.diagramPanel.repaint();
+	}
+	
+	public void editMethods(DragAndDropClassObject ddClassObject){
+		Vector<Object> methods = new Vector<Object>();
+		ImageIcon icon = new ImageIcon("");
+		for (String attribute:ddClassObject.classObject.methods){
+			methods.add(attribute);
+		}
+		Object[] possibilities = methods.toArray();
+		String s = (String)JOptionPane.showInputDialog(diagramPanel, 
+    			"Which method to edit?", 
+    			"Modify method..", 
+    			JOptionPane.PLAIN_MESSAGE, 
+    			icon, 
+    			possibilities, 
+    			"");
+		String newMeth = "";
+		for (int i = 0; i < ddClassObject.classObject.methods.size(); i++){
+			String method = ddClassObject.classObject.methods.get(i);
+			if (s.equals(method)){
+				newMeth = JOptionPane.showInputDialog(this.diagramPanel, 
+						"Enter a new value for this attribute:", method);
+				ddClassObject.classObject.methods.set(i, newMeth);
+			}
+		}
+		this.diagramPanel.repaint();
+	}
+	
 	public void editLink(String classOneName, String classTwoName){
 		for (int i=0;i<components.size();i++){
 			if (components.get(i).name.equals(classOneName)){
@@ -278,9 +332,7 @@ public class DragAndDropController extends MouseInputAdapter implements Serializ
 	
 	/*
 	 * Some funky jazz to draw the links, 
-	 * TODO: draw the arrow head.
-	 * TODO: draw the quantifier.
-     * TODO: change from one line into two squared parts.
+     * TODO: change from one line into three squared parts.
 	 */
 	public void drawLinks(Graphics g){
 		Vector<Link> currentLinks;
