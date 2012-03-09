@@ -9,7 +9,7 @@ package oneTwoFourTwo;
 
 import oneTwoFourTwo.DesignFrame;
 
-public class MainDriver {
+public class Main {
     public static void main(String args[]) {
    	 new DesignFrame(); //RUN TEH GOOOEY! 
     }
