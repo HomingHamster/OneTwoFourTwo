@@ -38,7 +38,7 @@ public class MainPanelButtonListener implements ActionListener {
 			//panel to do it.
 			this.diagramPanel.editLink();
 		} else if(actionCommand.equals("Get Help")){
-			//Display help!!
+			this.diagramPanel.showHelp();
 		} else {
 			System.out.println("Unexpected Command");
 		}

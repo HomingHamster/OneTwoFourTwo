@@ -8,11 +8,19 @@
 
 package oneTwoFourTwo;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 //The following because we are not going to be deserialzing 
 //in another dimension any time soon.
@@ -135,6 +143,30 @@ public class DiagramPanel extends JPanel{
 		this.addMouseMotionListener(controller);
 		//redraw
 		this.repaint();
+	}
+	
+	public void showHelp(){
+		File openAs = new File("README.txt");
+		FileReader in;
+		JFrame helpFrame = new JFrame();
+		helpFrame.setSize(600,420);
+		helpFrame.setLocation(120,120);
+		JTextArea helpText = new JTextArea();
+		helpText.setFont(new Font("Serif", Font.PLAIN, 12));
+		helpText.setLineWrap(true);
+		helpText.setWrapStyleWord(true);
+		helpText.setEditable(false);
+		try {
+			in = new FileReader(openAs);
+			helpText.read(in, openAs.toString());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		JScrollPane jsp = new JScrollPane(helpText);
+		helpFrame.add(jsp);
+		helpFrame.setVisible(true);
 	}
 
 }

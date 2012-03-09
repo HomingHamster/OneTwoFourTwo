@@ -9,7 +9,6 @@
 package oneTwoFourTwo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
 
 public class DesignFrameMenuListener implements ActionListener {
 	private DiagramPanel diagramPanel;
@@ -61,9 +60,7 @@ public class DesignFrameMenuListener implements ActionListener {
 		else if (actionCommand.equals("Help")){
 			//The parent of this should probably be the frame itself, 
 			//but i have a link to the diagramPanel here and available
-			JOptionPane.showMessageDialog(diagramPanel,
-					"This is SPARTA(help)!");
-			//TODO write help..
+			this.diagramPanel.showHelp();
 		}
 	}
 }
